@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="EN">
+  <head>
+    <title>Weird Store</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <section class="wrapper">
+        <header class="clearfix">
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="logo"/>
+            </a>
+            <h1 class="store-title">
+                <a href="#">The Weird Things Store </a>
+            </h1>
+        </header>
+        <section class="page-container clearfix">
+            <p class="page-description">
+                Welcome to the Weird Store.<br/>
+                Please select the products you want and add them to your shopping cart.<br />
+                When you are done, click the shopping cart icon to review and manage your order.
+            </p>
+            <div>
+                <div class="go-cart clearfix">
+                    <a href="#" title="go to shopping cart">
+                        <div class="icon-shopping-cart"></div>
+                        <span class="bold total-number">0</span> items, $<span class="bold total-price">0</span>
+                    </a>
+                </div>
+                <div  class="items-container" id="products-wrapper">
+
+
+                </div>
+                <div id="basket" class="clearfix hidden">
+                    <h1>Items in your Cart</h1>
+                    <!-- placeholder for items user adds to cart -->
+                </div>
+                <div class="go-cart clearfix">
+                    <a href="#" title="go to shopping cart">
+                        <div class="icon-shopping-cart"></div>
+                        <span class="bold total-number">0</span> items, $<span class="bold total-price">0</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="copyright">
+                <small>Copyright &copy; <a href="#">Weird Store</a> 2015</small>
+            </div>
+        </footer>
+    </section>
+    <script id="productstpl" type="text/template">
+        {{#products}}
+        <div class="item-container" id="item-{{id}}">
+            <div class="item-image">
+                <img src="./images/products/{{id}}.jpg" alt="{{name}}"/>
+            </div>
+            <div class="item-details">
+                <div class="item-title">
+                    <a href="#">{{name}}</a>
+                </div>
+                <div class="item-description">
+                    {{description}}
+                    <br/>
+                    <br/>
+                    <div class="item-price">
+                        Price:  ${{price}}
+                    </div>
+                    <div class="quantity">
+                        Available: <span class="quantity-{{id}}">{{quantity}}</span> items
+                    </div>
+                </div>
+            </div>
+            <div class="item-footer clearfix">
+                <button class="add cart-button" id="add-{{id}}">
+                    add to cart
+                </button>
+                <button class="remove cart-button" id="remove-{{id}}">
+                    remove from cart
+                </button>
+            </div>
+        </div>
+        {{/products}}
+    </script>
+    <script id="products-db" type="application/json">
+        { "products": [
+            {
+                "id": 123,
+                "name": "Holy Water",
+                "description": "The cheapest holy water! Buy it and save your soul from devil! Daily norm is 200ml form the saints and 2000ml for sinners.",
+                "price": 12,
+                "quantity": 5
+            },
+            {
+                "id": 456,
+                "name": "Hug Me Pillow",
+                "description": "Feeling so alone? There is nobody to rely on? Nobody to embrace you? Hug Me Pillow is all you need!",
+                "price": 17,
+                "quantity": 5
+            },
+            {
+                "id": 789,
+                "name": "Water Gun Umbrella",
+                "description": "Kill your enemies with water.",
+                "price": 12,
+                "quantity": 34
+            },
+            {
+                "id": 101,
+                "name": "Umbrella-Leash",
+                "description": "Protect your puppy from rain this cold autumn.",
+                "price": 12,
+                "quantity": 10
+            },
+            {
+                "id": 112,
+                "name": "Stop-Fat Belt",
+                "description": "Control your appetite with Stop-Fat Belt.",
+                "price": 12,
+                "quantity": 3
+            },
+            {
+                "id": 131,
+                "name": "Beard Hat",
+                "description": "Keep your beard warm regardless of the weather!",
+                "price": 12,
+                "quantity": 6
+            },
+            {
+                "id": 415,
+                "name": "Eat Pen",
+                "description": "One tool for both eating and writing! Free your kitchen from extra stuff.",
+                "price": 12,
+                "quantity": 32
+            },
+            {
+                "id": 161,
+                "name": "Flash Slippers",
+                "description": "Light the night with Flash Slippers!",
+                "price": 12,
+                "quantity": 12
+            },
+            {
+                "id": 718,
+                "name": "Ping Pong Door",
+                "description": "Play ping pong at home! No additional space required.",
+                "price": 12,
+                "quantity": 5
+            },
+            {
+                "id": 192,
+                "name": "A Duck-Billed Protective Muzzle For Dogs",
+                "description": "Save the others from your evil dog in funny way.",
+                "price": 12,
+                "quantity": 50
+            },
+            {
+                "id": 212,
+                "name": "Cutlery",
+                "description":"SALE! -50%! Buy all now! ",
+                "price": 15,
+                "quantity": 15
+            },
+            {
+                "id": 2121,
+                "name": "Cutlery: Fork",
+                "description":"super Fork. Useless, but cute",
+                "price": 15,
+                "quantity": 16
+            }
+        ]
+        }
+    </script>
+    <script type="text/javascript" src="js/vendor/lodash.js"></script>
+    <script type="text/javascript" src="js/vendor/mustache.min.js"></script>
+    <script type="text/javascript" src="js/app/app.js"></script>
+    <script type="text/javascript" src="js/app/app.observer.js"></script>
+    <script type="text/javascript" src="js/app/classes.js"></script>
+    <script type="text/javascript" src="js/app/app.pubsub.js"></script>
+    <script type="text/javascript" src="js/app/app.basket.js"></script>
+    <script type="text/javascript" src="js/app/app.cartcounters.js"></script>
+    <script type="text/javascript" src="js/app/app.main.js"></script>
+    <script type="text/javascript">
+        window.APP.init();
+    </script>
+  </body>
+</html>
